@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alex's OnShape Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Righteous&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --aero-deep: #2b6cb0;
+    --aero-muted: #3a6a9a;
+    --aero-glass-border: rgba(180,230,255,0.45);
+    --aero-hero-bg: linear-gradient(160deg,#b8e0ff 0%,#d0f4e8 50%,#e8f0ff 100%);
+    --aero-tag-mech: #1e7fc0;
+    --aero-tag-logo: #14a37f;
+    --page-bg: linear-gradient(180deg, #e8f4ff 0%, #f0faee 50%, #edf3ff 100%);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--page-bg);
+    min-height: 100vh;
+    color: #0a2a4a;
+    padding: 2rem 1rem 4rem;
+  }
+
+  .wrapper {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--aero-hero-bg);
+    border-radius: 28px;
+    padding: 3rem 2.5rem 2.5rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    border: 1.5px solid var(--aero-glass-border);
+    box-shadow: 0 8px 40px rgba(43,108,176,0.10);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, rgba(180,230,255,0.08) 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: -40px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,255,230,0.35) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--aero-muted);
+    margin-bottom: 0.5rem;
+  }
+  .hero-title {
+    font-family: 'Righteous', cursive;
+    font-size: clamp(2.4rem, 6vw, 3.8rem);
+    color: var(--aero-deep);
+    line-height: 1.05;
+    margin-bottom: 0.85rem;
+    text-shadow: 0 2px 18px rgba(0,100,200,0.10);
+  }
+  .hero-sub {
+    font-size: 15px;
+    color: var(--aero-muted);
+    max-width: 500px;
+    line-height: 1.65;
+    margin-bottom: 1.75rem;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .hero-stat {
+    background: rgba(255,255,255,0.58);
+    border: 1px solid var(--aero-glass-border);
+    border-radius: 16px;
+    padding: 0.65rem 1.25rem;
+    backdrop-filter: blur(8px);
+  }
+  .hero-stat-num {
+    font-family: 'Righteous', cursive;
+    font-size: 1.7rem;
+    color: var(--aero-deep);
+    line-height: 1;
+  }
+  .hero-stat-label {
+    font-size: 11px;
+    color: var(--aero-muted);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* SECTION LABEL */
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--aero-muted);
+    margin-bottom: 0.9rem;
+    padding-left: 2px;
+  }
+
+  /* FEATURED STRIP */
+  .featured-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 14px;
+    margin-bottom: 2.5rem;
+  }
+  .featured-card {
+    background: linear-gradient(140deg, rgba(220,240,255,0.9) 0%, rgba(200,255,235,0.65) 100%);
+    border: 1.5px solid var(--aero-glass-border);
+    border-radius: 20px;
+    padding: 1.35rem 1.2rem 1.1rem;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    display: block;
+    transition: transform 0.18s, box-shadow 0.18s;
+    box-shadow: 0 2px 12px rgba(43,108,176,0.07);
+  }
+  .featured-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 38%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.5) 0%, transparent 100%);
+    border-radius: 20px 20px 0 0;
+    pointer-events: none;
+  }
+  .featured-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(43,108,176,0.14); }
+  .featured-icon {
+    width: 44px; height: 44px;
+    border-radius: 13px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 0.75rem;
+    background: rgba(255,255,255,0.65);
+    border: 1px solid rgba(180,230,255,0.5);
+  }
+  .featured-name {
+    font-family: 'Righteous', cursive;
+    font-size: 15px;
+    color: var(--aero-deep);
+    margin-bottom: 5px;
+  }
+
+  /* FILTER BAR */
+  .filter-bar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+  .filter-btn {
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 20px;
+    padding: 6px 16px;
+    border: 1.5px solid rgba(180,230,255,0.5);
+    background: rgba(255,255,255,0.55);
+    color: var(--aero-muted);
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: all 0.15s;
+  }
+  .filter-btn.active, .filter-btn:hover {
+    background: var(--aero-deep);
+    color: #fff;
+    border-color: var(--aero-deep);
+  }
+
+  /* COUNT */
+  .count-line {
+    font-size: 12px;
+    color: var(--aero-muted);
+    margin-bottom: 0.85rem;
+  }
+
+  /* GRID */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+    gap: 13px;
+  }
+  .card {
+    background: rgba(255,255,255,0.7);
+    border: 1px solid rgba(180,230,255,0.45);
+    border-radius: 17px;
+    padding: 1.1rem 1rem 0.9rem;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    display: block;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 1px 6px rgba(43,108,176,0.05);
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 32%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.52) 0%, transparent 100%);
+    border-radius: 17px 17px 0 0;
+    pointer-events: none;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 8px 22px rgba(43,108,176,0.13); }
+  .card-icon { margin-bottom: 7px; display: block; }
+  .card-name {
+    font-family: 'Righteous', cursive;
+    font-size: 13.5px;
+    color: var(--aero-deep);
+    line-height: 1.25;
+    margin-bottom: 6px;
+  }
+  .card-tag {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    border-radius: 20px;
+    padding: 2px 8px;
+    display: inline-block;
+  }
+  .type-mech { background: rgba(30,127,192,0.14); color: #1e7fc0; }
+  .type-logo { background: rgba(20,163,127,0.14); color: #14a37f; }
+
+  .card-open {
+    position: absolute;
+    top: 10px; right: 10px;
+    width: 24px; height: 24px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.75);
+    border: 1px solid rgba(180,220,255,0.55);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0;
+    transition: opacity 0.15s;
+  }
+  .card:hover .card-open { opacity: 1; }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    margin-top: 3rem;
+    font-size: 12px;
+    color: var(--aero-muted);
+    letter-spacing: 0.04em;
+  }
+  .footer a { color: var(--aero-deep); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="hero">
+    <div class="hero-eyebrow">OnShape CAD Portfolio</div>
+    <div class="hero-title">Alex's<br>Design Studio</div>
+    <div class="hero-sub">Mechanical components, logo extrusions, and precision engineering — all modeled in OnShape.</div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num" id="total-count">48</div>
+        <div class="hero-stat-label">Models</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">2</div>
+        <div class="hero-stat-label">Categories</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">∞</div>
+        <div class="hero-stat-label">Iterations</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">★ Featured</div>
+  <div class="featured-strip" id="featured-strip"></div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="setFilter('all',this)">All</button>
+    <button class="filter-btn" onclick="setFilter('mechanical',this)">Mechanical</button>
+    <button class="filter-btn" onclick="setFilter('logo',this)">Logo Designs</button>
+  </div>
+
+  <div class="count-line" id="count-line"></div>
+  <div class="section-label">All models</div>
+  <div class="grid" id="main-grid"></div>
+
+  <div class="footer">
+    Built with OnShape &middot; <a href="https://cad.onshape.com" target="_blank">cad.onshape.com</a>
+  </div>
+</div>
+
+<script>
+const models = [
+  {name:"Spacer Plate",url:"https://cad.onshape.com/documents/00100490f4be1326618c1b54/w/37f7ccab668027b83e21da0d/e/1b6a19d2ab18d77daf5f93ec?renderMode=0&uiState=69d4168a26bf52135ed62951",cat:"mechanical"},
+  {name:"Unknown",url:"https://cad.onshape.com/documents/05670dc467e2f6dcb357dcd4/w/740a950f2d03d2862ffec7d7/e/bf2a70aaec49b2292e3e347a?renderMode=0&uiState=69d416d126bf52135ed62b31",cat:"mechanical"},
+  {name:"Wedge Block",url:"https://cad.onshape.com/documents/05912fbec00c63774f2c2ec7/w/69eb7d748d315d922d646a3d/e/0da31566e5d5d67bda178101?renderMode=0&uiState=69d416ebb3bfaec0af755fbe",cat:"mechanical"},
+  {name:"V Slide Plate",url:"https://cad.onshape.com/documents/070ef2c26f1e3816b83dabef/w/aeaefe6009c3f9f9e5193971/e/bd13bacba2060c6f3e450f57?renderMode=0&uiState=69d41705d83e119789ee788c",cat:"mechanical"},
+  {name:"Rod Slide",url:"https://cad.onshape.com/documents/08641ffa15d300aaa8a057e5/w/e59d3ede819108045ffa60a8/e/d68208001b1067bf41cef23f?renderMode=0&uiState=69d417226c9e73f542b67044",cat:"mechanical"},
+  {name:"Hinge Guide",url:"https://cad.onshape.com/documents/19e1ae224e9be74df7c3f748/w/25cb2c7ea54017b0e77f2736/e/72a0c4586a8a5685d5f94f96?renderMode=0&uiState=69d41735c0f6ca2ebd07868e",cat:"mechanical"},
+  {name:"Shaft Support",url:"https://cad.onshape.com/documents/2badbd51ab0f092c72bb1e2b/w/ed63f8af399a5b8467288e88/e/2e8b703faa5baa476e666bca?renderMode=0&uiState=69d417416ab476f513400262",cat:"mechanical"},
+  {name:"TikTok Logo",url:"https://cad.onshape.com/documents/32867f64f33db08b9e39d857/w/304e34ed68ab28475deb2095/e/cc5679f0408b5fb85fc7f441?renderMode=0&uiState=69d4175123cd3b5c58f93eaf",cat:"logo"},
+  {name:"Coca Cola Logo",url:"https://cad.onshape.com/documents/34f26e50543f8c33c2d9cfa8/w/51e41aca3d5943a4a7353f37/e/e8f8aa71cba19c69c51b87b8?renderMode=0&uiState=69d417647c11346c5b9f91b7",cat:"logo"},
+  {name:"Happy New Year Logo",url:"https://cad.onshape.com/documents/36290a6062388c8b81140082/w/ac494db736feab468d2bbf9c/e/477b7f921c8caa2fc89c294e?renderMode=0&uiState=69d41779389bd645bffa26f8",cat:"logo"},
+  {name:"Coupling Base",url:"https://cad.onshape.com/documents/3e9c78fcbc26d3a4a3a259fa/w/3f78671a52a5fde4c4515daf/e/61ac68795b9f58032b09d456?renderMode=0&uiState=69d41797d83e119789ee7bc2",cat:"mechanical"},
+  {name:"Sonamoo Logo",url:"https://cad.onshape.com/documents/40a9181cdb90da648ba3fa56/w/dfd9556de99ed6d64809d48f/e/7afa2cfec1ab0c9fded6cd99?renderMode=0&uiState=69d417cd23cd3b5c58f94181",cat:"logo"},
+  {name:"Transfer Fork",url:"https://cad.onshape.com/documents/518116333b5d2e57b1df7731/w/330c700ef58fe8dc9f50cc4a/e/788ca697a44376a8938e51e0?renderMode=0&uiState=69d417e4b65c0c78aea5cdfe",cat:"mechanical"},
+  {name:"Angle Bracket",url:"https://cad.onshape.com/documents/57d09714c9c9d13802a25530/w/17c67144bc6d7e4ad43005df/e/ae87b5c488f9f67dde063c04?renderMode=0&uiState=69d4180a496a3ff209309adf",cat:"mechanical"},
+  {name:"Support Mount",url:"https://cad.onshape.com/documents/5dc207065228d845c8d9c653/w/94fd11e684821dde2cfbac3a/e/419305c3b77e15a7d70adf27?renderMode=0&uiState=69d418856ab476f513400b28",cat:"mechanical"},
+  {name:"Slide Mount",url:"https://cad.onshape.com/documents/5fcbcc04696fc0ddd329705e/w/f2062cd02d23d2206064d413/e/49a6b2724abea2774ce43872?renderMode=0&uiState=69d4189b97aeef9c55c8975b",cat:"mechanical"},
+  {name:"Tube Hanger",url:"https://cad.onshape.com/documents/613ea28bb66fffd2f5b50ef3/w/7c18dfbbd0f5814c5cb861b8/e/96a289522b3b1eccb9f6999f?renderMode=0&uiState=69d418ab26bf52135ed636d3",cat:"mechanical"},
+  {name:"Shell Logo",url:"https://cad.onshape.com/documents/66147fb3a4fa7fa247c59f7a/w/66caa22fd13ecf323305bc8a/e/f447b54d5871242b0a5b9174?renderMode=0&uiState=69d418beef3ec2bb7c745a80",cat:"logo"},
+  {name:"MasterCard Logo",url:"https://cad.onshape.com/documents/79d785867a01874196e85750/w/634ac86232b4139d85b3b4f7/e/3019e02ca7534de81b6931c2?renderMode=0&uiState=69d418dab864598a6bc345c4",cat:"logo"},
+  {name:"L Bracket",url:"https://cad.onshape.com/documents/fdcfbaa02c1f63068c51ee53/w/e1b9e5b3615bb605c3376ad1/e/90846b7e13680d4f9ee9fde9?renderMode=0&uiState=69d418fa7c11346c5b9f99df",cat:"mechanical"},
+  {name:"C Clip",url:"https://cad.onshape.com/documents/fdcfbaa02c1f63068c51ee53/w/e1b9e5b3615bb605c3376ad1/e/90846b7e13680d4f9ee9fde9?renderMode=0&uiState=69d418fa7c11346c5b9f99df",cat:"mechanical"},
+  {name:"Gyro Mount",url:"https://cad.onshape.com/documents/fba97a237f9072f95a11b979/w/9ae78e8a503d2f2d9dfe0def/e/eb5cda1a14c5b7c4aebeff62?renderMode=0&uiState=69d4191fa29f29c1fcb50070",cat:"mechanical"},
+  {name:"Shaft Guide",url:"https://cad.onshape.com/documents/f68ad85bb50edf0f2bdc6289/w/e1934a27e69eae14373c98cb/e/2269c0fe49315ec42902faab?renderMode=0&uiState=69d4192de492bf831c9261d5",cat:"mechanical"},
+  {name:"Inclined Support",url:"https://cad.onshape.com/documents/f480be90d378bdb54709e729/w/84879a6064ebdc9cebbae158/e/b8708d29eb47ab4450bc9075?renderMode=0&uiState=69d41945496a3ff20930a1a6",cat:"mechanical"},
+  {name:"Valve Lifter",url:"https://cad.onshape.com/documents/f322376d9c1c901a639e45fe/w/4831c01bb124c99ee17a5659/e/c50bd0779d3a64144bd9c9c7?renderMode=0&uiState=69d41971d83e119789ee82fb",cat:"mechanical"},
+  {name:"Anchor Base",url:"https://cad.onshape.com/documents/f17e4273786dcf8f09dfd6a8/w/4715d00826bc0518d6d3bb74/e/9b4a64213009e7557d4e06ad?renderMode=0&uiState=69d41987496a3ff20930a2e7",cat:"mechanical"},
+  {name:"Connecting Rod",url:"https://cad.onshape.com/documents/e48f81e46e411ca80bc12b0c/w/e91d23015ab064896e2ffe20/e/25d74bdb508ead2a77e04a6f?renderMode=0&uiState=69d419e15a3e2e81218ae758",cat:"mechanical"},
+  {name:"Bevel Washer",url:"https://cad.onshape.com/documents/cde08fd9f599cad2c8335bbf/w/b9408582b9f7e2d2b52f0990/e/2a4b6f260f586946e3b37fea?renderMode=0&uiState=69d419ef26bf52135ed639c5",cat:"mechanical"},
+  {name:"Angle Support",url:"https://cad.onshape.com/documents/cde08fd9f599cad2c8335bbf/w/b9408582b9f7e2d2b52f0990/e/2a4b6f260f586946e3b37fea?renderMode=0&uiState=69d419ef26bf52135ed639c5",cat:"mechanical"},
+  {name:"Guide Plate",url:"https://cad.onshape.com/documents/c611444fe66308fd3d3690ae/w/7a78e72496ff503c79c1d5b8/e/0be8e5e114df79bac8d62ab6?renderMode=0&uiState=69d41a0d1625b242135043e5",cat:"mechanical"},
+  {name:"Positioning Stop",url:"https://cad.onshape.com/documents/c400b282877405b296f12ece/w/f2b9922cc24ccd44771773b4/e/eb7e8c767374ce1e09e37edb?renderMode=0&uiState=69d41a1dc0f6ca2ebd07c6f8",cat:"mechanical"},
+  {name:"Swivel Base",url:"https://cad.onshape.com/documents/c0c192810c105a62bf24bfaa/w/19ff305dd6a7985a3ec9f9af/e/bf178e487cb2e4b2cca2c0c4?renderMode=0&uiState=69d41a395a3e2e81218ae8e8",cat:"mechanical"},
+  {name:"Guide Block",url:"https://cad.onshape.com/documents/bddd6343248fccddbded5fcd/w/3b55178e69256fcc69614ddd/e/ffd5260bfaf14a9b53bb526d?renderMode=0&uiState=69d41afcf68dddbdce3163d9",cat:"mechanical"},
+  {name:"Swivel Yoke",url:"https://cad.onshape.com/documents/bb10ae99907d8485b4ec2c66/w/a20c9651a68e5541568339fc/e/2a7179e30979648178dcb3a2?renderMode=0&uiState=69d41b0fa29f29c1fcb50ad7",cat:"mechanical"},
+  {name:"Starbucks Logo",url:"https://cad.onshape.com/documents/b8a2c7d255e222ba8f3d9c9a/w/4d4bda5e5fbf835eb2936661/e/7e0c3bac290ccec087048e36?renderMode=0&uiState=69d41b2db3bfaec0af7572fc",cat:"logo"},
+  {name:"BLM Logo",url:"https://cad.onshape.com/documents/b77fc2ab658434ffe36cef09/w/cee00401f654a2c36f813416/e/22645b07a566941719dc6160?renderMode=0&uiState=69d41b49b864598a6bc35f95",cat:"logo"},
+  {name:"Indexing Guide",url:"https://cad.onshape.com/documents/7dac461ce860b20cd53c9b2b/w/4ce018ed43fd1b0b795600f0/e/c5095f87e963e4611ed5040e",cat:"mechanical"},
+  {name:"Tube Mount",url:"https://cad.onshape.com/documents/7e9720b37f5f297c8ddb0268/w/4b1bed7f7b8a62616ccb2c59/e/ede91fc353fe85aa0eb0fd95?renderMode=0&uiState=69d41ba2f68dddbdce31674f",cat:"mechanical"},
+  {name:"Subway Logo",url:"https://cad.onshape.com/documents/80be850155a936c3fe9a210b/w/56fb2ca6cb8606ecfb480160/e/52552c72b057650b7d1789d3?renderMode=0&uiState=69d41bcd40fd86450499bf58",cat:"logo"},
+  {name:"Ratchet Plate",url:"https://cad.onshape.com/documents/824300150dc52995b69c4372/w/d0c5b73d6cb994a43588c489/e/9ffbf0ae4eff341c54cd3037?renderMode=0&uiState=69d41be60a2a69c8334e74d6",cat:"mechanical"},
+  {name:"Angle Latch",url:"https://cad.onshape.com/documents/824300150dc52995b69c4372/w/d0c5b73d6cb994a43588c489/e/9ffbf0ae4eff341c54cd3037?renderMode=0&uiState=69d41be60a2a69c8334e74d6",cat:"mechanical"},
+  {name:"Shaft Support B",url:"https://cad.onshape.com/documents/83d4784c8267955deebafb45/w/8c5aa979ff7d04770fd8c86d/e/3f9fe44d3ed1cecba6e28a68?renderMode=0&uiState=69d41c0def3ec2bb7c746bfb",cat:"mechanical"},
+  {name:"Geneva Wheel",url:"https://cad.onshape.com/documents/85faf4a76c04aa65c4f6d56e/w/af30fcddd3dab3943f16b4ce/e/e6a4d4d81209b8549f6518e6?renderMode=0&uiState=69d41c1df68dddbdce31696f",cat:"mechanical"},
+  {name:"Holder Base",url:"https://cad.onshape.com/documents/8ab4ed052190413c5993a72a/w/e31b35c7ca9f6beb57595269/e/0bdc6c049d8e71c1f6d7a187?renderMode=0&uiState=69d41c2e97aeef9c55c8a9bc",cat:"mechanical"},
+  {name:"FRC Part",url:"https://cad.onshape.com/documents/05912fbec00c63774f2c2ec7/w/69eb7d748d315d922d646a3d/e/0da31566e5d5d67bda178101?renderMode=0&uiState=69d41c41a29f29c1fcb5120d",cat:"mechanical"},
+  {name:"Angle V Block",url:"https://cad.onshape.com/documents/a7587f617e8629adfe2885b7/w/9638ecd37ec17bf4763677a0/e/87280132294e8cce1a83421c?renderMode=0&uiState=69d41c5b51d344b62622ce46",cat:"mechanical"},
+  {name:"Latch Clip",url:"https://cad.onshape.com/documents/addb98b0a2a0b553feb5a4eb/w/e83591319d44293697d069da/e/1bf7594b6ae790961f090de3?renderMode=0&uiState=69d41c6b23cd3b5c58f989b8",cat:"mechanical"},
+];
+
+const featured = ["Geneva Wheel","Coca Cola Logo","Transfer Fork","Swivel Yoke","Starbucks Logo","TikTok Logo"];
+
+const mechSVG = `<svg viewBox="0 0 24 24" fill="none" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="3" stroke="#1e7fc0" stroke-width="1.8"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12" stroke="#1e7fc0" stroke-width="1.8" stroke-linecap="round"/></svg>`;
+const logoSVG = `<svg viewBox="0 0 24 24" fill="none" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#14a37f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const openSVG = `<svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="#1e7fc0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+function renderFeatured() {
+  const strip = document.getElementById('featured-strip');
+  featured.forEach(name => {
+    const m = models.find(x => x.name === name);
+    if (!m) return;
+    const a = document.createElement('a');
+    a.href = m.url;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.className = 'featured-card';
+    a.innerHTML = `
+      <div class="featured-icon">${m.cat === 'logo' ? logoSVG : mechSVG}</div>
+      <div class="featured-name">${m.name}</div>
+      <span class="card-tag type-${m.cat === 'logo' ? 'logo' : 'mech'}">${m.cat === 'logo' ? 'Logo' : 'Mechanical'}</span>`;
+    strip.appendChild(a);
+  });
+}
+
+function renderGrid(filter) {
+  const grid = document.getElementById('main-grid');
+  const countLine = document.getElementById('count-line');
+  grid.innerHTML = '';
+  const filtered = models.filter(m => filter === 'all' || m.cat === filter);
+  countLine.textContent = `${filtered.length} model${filtered.length !== 1 ? 's' : ''}`;
+  filtered.forEach(m => {
+    const a = document.createElement('a');
+    a.href = m.url;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.className = 'card';
+    a.innerHTML = `
+      <span class="card-icon">${m.cat === 'logo' ? logoSVG : mechSVG}</span>
+      <div class="card-name">${m.name}</div>
+      <span class="card-tag type-${m.cat === 'logo' ? 'logo' : 'mech'}">${m.cat === 'logo' ? 'Logo' : 'Mechanical'}</span>
+      <div class="card-open">${openSVG}</div>`;
+    grid.appendChild(a);
+  });
+  document.getElementById('total-count').textContent = models.length;
+}
+
+function setFilter(f, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderGrid(f);
+}
+
+renderFeatured();
+renderGrid('all');
+</script>
+</body>
+</html>
